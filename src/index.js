@@ -22,31 +22,40 @@ store.subscribe(() => console.log(store.getState()))
 
 const paintToDos = () => {
   const toDos = store.getState();
+  ul.innerHTML = "";
   toDos.forEach(toDo => {
     const li = document.createElement("li")
+    const btn = document.createElement("button")
+    btn.innerHTML = "DEL"
+    li.appendChild(btn);
     li.id = toDo.id
     li.innerText = toDo.text;
-    ul.appendChild
+    ul.appendChild(li);
   })
 }
+
 store.subscribe(paintToDos)
 
 const addToDo = (text) => {
-  store.dispatch({ type: ADD_TODO, text: toDo })
+  store.dispatch({ type: ADD_TODO, text })
 }
-const
 
 const createToDo = toDo => {
   const li = document.createElement("li")
+  const btn = document.createElement("button")
+  btn.innerHTML = "DEL"
+  li.id = toDo.id;
   li.innerText = toDo;
+  li.appendChild(btn)
   ul.appendChild(li)
+
 }
 
 const onSubmit = e => {
   e.preventDefault();
   const toDo = input.value;
   input.value = "";
-  addToDo();
+  addToDo(toDo);
 };
 
 form.addEventListener("submit", onSubmit)
